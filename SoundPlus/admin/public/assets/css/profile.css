@@ -1,0 +1,207 @@
+/* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background: #f4f7fc;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+h1, h2 {
+    color: #333;
+    font-weight: 600;
+}
+
+/* Profile Header */
+.profile-header {
+    background: linear-gradient(145deg, #6a11cb, #2575fc);
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.profile-header .profile-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.profile-header .profile-picture img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    object-fit: cover;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.profile-header .profile-details {
+    margin-left: 20px;
+    text-align: left;
+    max-width: 400px;
+}
+
+.profile-header .profile-details h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 10px 0;
+}
+
+.profile-header .profile-details p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.profile-header .btn {
+    background: #ff7f50;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 20px;
+    transition: background 0.3s ease;
+}
+
+.profile-header .btn:hover {
+    background: #ff5722;
+}
+
+/* Upload Section */
+.upload-section {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+    text-align: center;
+}
+
+.upload-section h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.upload-section input[type="file"] {
+    display: none;
+}
+
+.upload-section label {
+    background-color: #2575fc;
+    padding: 10px 20px;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.upload-section label:hover {
+    background-color: #1e64c5;
+}
+
+.upload-section button {
+    background-color: #ff7f50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    border: none;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.upload-section button:hover {
+    background-color: #ff5722;
+}
+
+/* Profile Settings Section */
+.settings-section {
+    background: #fff;
+    padding: 30px;
+    margin-top: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.settings-section h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.settings-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.settings-section ul li {
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+.settings-section ul li a {
+    color: #2575fc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.settings-section ul li a:hover {
+    color: #ff7f50;
+}
+
+/* Genres Section */
+.genres-section {
+    background: #fff;
+    padding: 30px;
+    margin-top: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.genres-section h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.genres-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.genres-list .genre-item {
+    background-color: #f1f1f1;
+    padding: 10px 15px;
+    border-radius: 20px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #333;
+    transition: background-color 0.3s ease;
+}
+
+.genres-list .genre-item:hover {
+    background-color: #2575fc;
+    color: white;
+}
+
+/* Footer */
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}

@@ -1,0 +1,175 @@
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        } 
+
+        .footer {
+            background-color: white;
+            font-family: 'Poppins', sans-serif;
+            padding: 80px 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            animation: fadeInUp 1s ease-in-out;
+            position: relative;
+        }
+        .dark-theme .footer{
+            background-color: #121212;
+        
+        }
+
+        .footer-slogan {
+            text-align: center;
+            width: 100%;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            color: #ff9800;
+            letter-spacing: 1px;
+            animation: fadeInUp 1.5s ease-in-out;
+        }
+
+        .footer .section {
+            flex: 1 1 250px;
+            margin: 20px;
+        }
+
+        .footer h2 {
+            font-size: 22px;
+            color: #ff9800;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .footer h2:after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, #ff9800, #ff5722);
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            border-radius: 2px;
+        }
+
+        .footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer ul li {
+            margin: 12px 0;
+            font-size: 15px;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .footer ul li:hover {
+            transform: translateX(12px);
+            color: #ff9800;
+        }
+
+        .footer ul li a {
+            color: #000000;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .dark-theme .footer ul li a{
+            color:white;
+        }
+
+        .footer ul li a:hover {
+            color: #ff5722;
+        }
+
+        .footer ul li.view-all {
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        .footer ul li.view-all a {
+            color: #ff9800;
+            text-decoration: none;
+        }
+
+        .footer ul li.view-all a:hover {
+            color: #ff5722;
+        }
+
+        .footer .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .footer .social-links a {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            margin-bottom: 70px;
+            background: #333;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .footer .social-links a:hover {
+            background: linear-gradient(to right, #ff9800, #ff5722);
+            transform: scale(1.15);
+        }
+
+        .footer .social-links img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .footer .bottom-bar {
+            text-align: center;
+            margin-top: 100px;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            font-size: 14px;
+        }
+
+        .footer .bottom-bar a {
+            color: #ff9800;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer .bottom-bar a:hover {
+            color: #ff5722;
+        }
+
+        @media (max-width: 768px) {
+            .footer {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer .section {
+                flex: 1 1 100%;
+                margin: 20px 0;
+            }
+        }
+
+        /* Footer and Rating Section */
+footer{
+    transition: margin-left 0.3s ease-in-out; /* Ensure smooth transition */
+  }
+  
+  footer.shifted {
+    margin-left: 280px; /* Move these elements when the sidebar is open */
+  }
+  
+    

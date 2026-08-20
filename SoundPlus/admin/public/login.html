@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | SoundPlus</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Login Form -->
+    <div class="login-container">
+        <h2>Login</h2>
+        <form action="login.php" method="post" onsubmit="return validateLoginForm()">
+
+            <!-- Identifier (Email or Mobile) -->
+            <div class="input-group">
+                <label for="identifier"></label>
+                <input type="text" id="identifier" name="identifier" placeholder="Enter email or mobile" required>
+                <div id="identifierError" class="error"></div>
+            </div>
+
+            <!-- Password -->
+            <div class="input-group">
+                <label for="password"></label>
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <div id="passwordError" class="error"></div>
+            </div>
+
+            <!-- Buttons -->
+            <button type="submit" class="btn">Login</button>
+            <button type="button" class="forgot-btn" onclick="showCustomAlert()">Forgot Password?</button>
+
+            <!-- Signup Link -->
+            <div class="signup-link">
+                Don’t have an account? <a href="signup.html">Sign Up</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Custom Alert Box -->
+    <div id="custom-alert" class="custom-alert">
+        <div class="custom-alert-content">
+            <p>Redirecting to forgot password page...</p>
+            <button class="alert-btn" onclick="redirectToForgotPassword()">OK</button>
+        </div>
+    </div>
+    <script>
+        //login validate start
+        // Live Validation for Login Form
+        window.onload = function () {
+            const identifier = document.getElementById("identifier");
+            const password = document.getElementById("password");
+            const identifierError = document.getElementById("identifierError");
+            const passwordError = document.getElementById("passwordError");
+
+            // Live validation for identifier (email or mobile)
+            identifier.addEventListener("input", function () {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                const mobileRegex = /^[0-9]{10}$/;
+
+                if (!emailRegex.test(identifier.value.trim()) && !mobileRegex.test(identifier.value.trim())) {
+                    identifierError.textContent = "Enter a valid email or 10-digit mobile number.";
+                } else {
+                    identifierError.textContent = "";
+                }
+            });
+
+            // Live validation for password
+            password.addEventListener("input", function () {
+                if (password.value.trim().length < 8) {
+                    passwordError.textContent = "Enter password wrong";
+                } else {
+                    passwordError.textContent = "";
+                }
+            });
+        };
+
+        // Final Validation on Submit
+        function validateLoginForm() {
+            let isValid = true;
+
+            const identifier = document.getElementById("identifier");
+            const password = document.getElementById("password");
+            const identifierError = document.getElementById("identifierError");
+            const passwordError = document.getElementById("passwordError");
+
+            // Validate Identifier (Email or Mobile)
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const mobileRegex = /^[0-9]{10}$/;
+            if (!emailRegex.test(identifier.value.trim()) && !mobileRegex.test(identifier.value.trim())) {
+                identifierError.textContent = "Enter a valid email or 10-digit mobile number.";
+                isValid = false;
+            }
+
+            // Validate Password
+            if (password.value.trim().length < 8) {
+                passwordError.textContent = "Enter password wrong";
+                isValid = false;
+            }
+
+            return isValid; // Prevent submission if invalid
+        }
+
+        // Custom Alert for Forgot Password
+        function showCustomAlert() {
+            document.getElementById("custom-alert").style.display = "flex";
+        }
+
+        // Redirect to Forgot Password Page
+        function redirectToForgotPassword() {
+            document.getElementById("custom-alert").style.display = "none";
+            window.location.href = "forgot_Password.php";
+        }
+    //end login vliadation
+
+    </script>
+
+    
+   </body>
+   </html>

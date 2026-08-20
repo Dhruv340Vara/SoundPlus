@@ -1,0 +1,57 @@
+/* Base style for alert box */
+.alert {
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* Success alert (green) */
+.alert.success {
+    background-color: #4CAF50;
+    color: white;
+    border-left: 5px solid #45a049;
+}
+
+/* Error alert (red) */
+.alert.error {
+    background-color: #f44336;
+    color: white;
+    border-left: 5px solid #e53935;
+}
+
+/* Close button style */
+.closebtn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Close button hover effect */
+.closebtn:hover {
+    color: #000;
+    background-color: transparent;
+}
+
+/* Animation for alert */
+.alert {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

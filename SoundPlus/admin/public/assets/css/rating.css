@@ -1,0 +1,77 @@
+/* Rating Section Styles */
+.rating {
+    text-align: center;
+    background-color:rgba(255, 255, 255, 0.73);
+    color: #000000;
+    padding: 40px 20px;
+    font-family: 'Poppins', sans-serif;
+    border-top: 1px solid #333;
+    margin-top: 30px;
+}
+.dark-theme .rating{
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.rating h2 {
+    color: #ff9800;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.rating-stars {
+    display: inline-block;
+}
+
+.stars input[type="radio"] {
+    display: none;
+}
+
+.stars label {
+    font-size: 30px;
+    color: #d9d9d9;
+    cursor: pointer;
+    transition: transform 0.3s, color 0.3s;
+}
+
+.stars label:hover,
+.stars label:hover ~ label,
+.stars input[type="radio"]:checked ~ label {
+    color: #ff9800;
+    transform: scale(1.2);
+}
+
+.submit-rating {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: linear-gradient(to left, #ff9800, #ff5722);
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.submit-rating:hover {
+    background: linear-gradient(to left, #ff5722, #ff9800);
+    transform: scale(1.05);
+}
+
+.average-rating {
+    margin-top: 30px;
+    font-size: 18px;
+}
+
+.average-rating strong {
+    color: #ff9800;
+}
+
+/* Footer and Rating Section */
+.rating {
+    transition: margin-right 0.3s ease-in-out; /* Ensure smooth transition */
+  }
+.rating.shifted {
+    margin-right: 280px; /* Move these elements when the sidebar is open */
+  }
+  

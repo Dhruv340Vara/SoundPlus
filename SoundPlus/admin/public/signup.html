@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .error-message{
+            margin-top: 5px;
+            font-size:0.9rem;
+            color: red;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="login-container">
+        <h2>Sign Up</h2>
+        <form id="signupForm" action="signup.php" method="POST" onsubmit="return validateForm()">
+
+            <div class="input-group">
+                <label for="username"></label>
+                <input type="text" id="username" name="username" placeholder="Enter Your Username" required>
+                <p class="error-message" id="usernameError"></p>
+            </div>
+
+            <div class="input-group">
+                <label for="email"></label>
+                <input type="email" id="email" name="email" placeholder="Enter Your Email" required>
+                <p class="error-message" id="emailError"></p>
+            </div>
+
+            <div class="input-group">
+                <label for="mobile"></label>
+                <input type="tel" id="mobile" name="mobile" placeholder="Enter Your Mobile number" required>
+                <p class="error-message" id="mobileError"></p>
+            </div>
+
+            <div class="input-group">
+                <label for="password"></label>
+                <input type="password" id="password" name="password" placeholder="Enter Your password" required>
+                <p class="error-message" id="passwordError"></p>
+            </div>
+
+            <div class="input-group">
+                <label for="confirmPassword"></label>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter Your Password" required>
+                <p class="error-message" id="confirmPasswordError"></p>
+            </div>
+       
+            <div>
+                <button type="submit" class="btn">Signup</button>
+                </div>
+        </form>
+        <div class="login-link">Already have an account?<a href="login.html">Login</a></div>
+    </div>
+
+    <script>
+
+      //live validation
+      //inputs filed
+      window.onload=function()
+      {
+        
+           const username=document.getElementById("username");
+            const email=document.getElementById("email");
+             const mobile=document.getElementById("mobile");
+             const password=document.getElementById("password");
+             const confirmPassword=document.getElementById("confirmPassword");
+
+             //error Elements
+                   //error elaments
+          const usernameError=document.getElementById("usernameError");
+          const emailError=document.getElementById("emailError");
+          const mobileError=document.getElementById("mobileError");
+          const passwordError=document.getElementById("passwordError");
+          const confirmPasswordError=document.getElementById("confirmPasswordError");
+
+          //username validation
+             //username valiadion 
+             const usernameRegex=/^[a-zA-Z0-9@]{3,10}$/;
+             username.addEventListener("input",function(){
+             const usernameValue=username.value.trim();
+             if(!usernameRegex.test(usernameValue) || !usernameValue.includes('@'))
+             {
+              usernameError.textContent="Username must be at least 3-10 characters long,include '@' and contain only letters,numbers and '@'' ";
+              
+             }
+             else{
+              usernameError.textContent="";
+             }
+             });
+
+             //email valdation
+             //email valiadion 
+          const emailRegex=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          email.addEventListener("input",function(){
+          if(!emailRegex.test(email.value.trim()))
+          {
+            emailError.textContent="Please enter a valid email address.";
+          }
+          else{
+            emailError.textContent="";
+          }
+        });
+
+
+        //mobile validaion
+        const mobileRegex=/^[0-9]{10}$/;
+          mobile.addEventListener("input",function(){
+            this.value=this.value.replace(/\D/g, '');//all only digit
+            if(this.value.length === 10 && mobileRegex.test(this.value)){
+                mobileError.textContent="";
+            }
+            else if(this.value.length>10)
+            {
+              mobileError.textContent="Mobile number must be exactliy 10 digits";
+            }
+            else if(this.value.length<10 && this.value.length>0)
+            {
+              mobileError.textContent="Mobile number must be exactliy 10 digits";
+            }
+            else{
+            usernameError.textContent="";
+      }});
+
+
+      //password validaion
+      const passwordRegex=/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+      password.addEventListener("input",function(){
+        if(!passwordRegex.test(password.value.trim())){
+            passwordError.textContent="Password must be at least 8 characters long.include an uppercase letter,a number,and special character.";
+          }
+          else{
+            passwordError.textContent="";
+          }
+      });
+
+
+       //confirmpassword validaion
+       confirmPassword.addEventListener("input",function(){
+       if(confirmPassword.value!==password.value)
+          {
+            confirmPasswordError.textContent="Password do not match.";
+          }
+          else{
+            confirmPasswordError.textContent="";
+          }});
+      };
+
+
+        // final javasscript validation form funcion
+        function validateForm()
+        {
+            let  isvalid=true;
+
+            const username=document.getElementById("username");
+            const email=document.getElementById("email");
+             const mobile=document.getElementById("mobile");
+             const password=document.getElementById("password");
+             const confirmPassword=document.getElementById("confirmpassword");
+
+             //error elaments
+          const usernameError=document.getElementById("usernameError");
+          const emailError=document.getElementById("emailError");
+          const mobileError=document.getElementById("mobileError");
+          const passwordError=document.getElementById("passwordError");
+          const confirmPasswordError=document.getElementById("confirmpasswordError");
+
+           //username valiadion 
+           const usernameRegex=/^[a-zA-Z0-9@]{3,10}$/
+             if(!usernameRegex.test(username.value.trim)|| !username.value,includes('@'))
+             {
+              usernameError.textContent="Username must be at least 3-10 characters long,include '@' and contain only letters,numbers and '@'' ";
+              isvalid=false;
+             }
+             else{
+              usernameError.textContent="";
+             }
+        
+
+          
+          //email valiadion 
+          const emailRegex=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if(!emailRegex.test(email.value.trim()))
+          {
+            emailError.textContent="Please enter a valid email address.";
+            isvalid=false;
+          }
+          else{
+            usernameError.textContent="";
+          }
+
+
+          //mobile valiadion 
+          const mobileRegex=/^[0-9]{10}$/;
+            if(!mobileRegex.test(mobile.value.trim())){
+                mobileError.textContent="Mobile number must be exactliy 10 digits";
+                isvalid=false;
+            }
+            else{
+            usernameError.textContent="";
+          }
+
+          
+        
+
+          //password validaion 
+          const passwordRegex=/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+          if(!passwordRegex.test(password.value.trim())){
+            passwordError.textContent="Password must be at least 8 characters long.include an uppercase letter,a number,and special character.";
+            isvalid=false;
+          }
+          else{
+            passwordError.textContent="";
+          }
+
+          //confirmpassword validaion
+          if(confirmPassword.value !== password.value)
+          {
+            confirmPasswordError.textContent="Password do not match.";
+            isvalid=false;
+          }
+          else{
+            confirmPasswordError.textContent="";
+          }
+          return isvalid;
+        }
+    </script>
+
+</body>
+</html>
