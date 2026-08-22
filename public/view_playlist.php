@@ -453,7 +453,7 @@ if(isset($_POST['delete_song'])){
 
      <div class="music-player-bar">
         <div class="player-info">
-            <img src="assets/images/default-cover.jpg" alt="Track Cover" id="track-cover">
+            <img src="assets/images/p.png" alt="Track Cover" id="track-cover">
             <div class="track-details">
                 <p class="track-title" id="track-title">Track Name</p>
                 <p class="track-artist" id="track-artist">Artist Name</p>

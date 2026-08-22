@@ -431,7 +431,7 @@ if($is_logged_in){
                 <?php while($row=mysqli_fetch_assoc($result)) { ?>
 
                     <div class="song-card" onclick="checkLoginAndSubscription('<?= $row['file_path'] ?>', '<?= $row['title'] ?>', ' <?=$row['cover_image'] ?>', '<?=$row['artist_id'] ?>')">
-                   <img src="<?= $row['cover_image'] ?>" alt="Cover" class="song-cover">
+                   <img src="../admin/assets/images/album_covers/<?= $row['cover_image'] ?>" alt="Cover" class="song-cover">
 
                    <div class="play-button"><i>&#9658</i></div>
                    <div class="song-info">
@@ -478,7 +478,7 @@ if($is_logged_in){
             <div id="artists-list">
                <?php while($artist=mysqli_fetch_assoc($artistResult)) { ?>
                 <?php 
-                $folder="../assets/images/artist_profiles/";
+                $folder="../admin/assets/images/artist_profiles/";
                 $profilePicture=$artist['profile_picture'];
                 //Construct the full image path
                 $imagePath=$folder.$profilePicture;
@@ -517,7 +517,7 @@ if($is_logged_in){
                          return;
                     }
 
-                    window.location.href=`artist.php?id=${artistId}`;
+                    window.location.href=`artist.php?artist_id=${artistId}`;
                 }
               </script>         
            <!--  Artist Fetch end -->
@@ -530,7 +530,7 @@ if($is_logged_in){
      include('includes/db_connect.php');
 
      $is_logged_in=isset($_SESSION['user_id']);
-     $is_subsribed=false;
+     $is_subsribed=true;
 
      if($is_logged_in){
          $user_id=$_SESSION['user_id'];
@@ -554,7 +554,7 @@ if($is_logged_in){
        <?php while($album=mysqli_fetch_assoc($result)){ ?>
         <div class="album" onclick="checkLoginAndSubscriptionAlbum('<?=$album['album_id'] ?>')">
         <?php
-         $imagePath="../assets/images/album_covers/".$album['cover_image'];
+         $imagePath="../admin/assets/images/album_covers/".$album['cover_image'];
 
          if(!empty($album['cover_image']) && file_exists($imagePath)){
             echo '<img src="'.$imagePath.'" alt="'.$album['title'].'">';   //single double quote more
@@ -604,7 +604,7 @@ if($is_logged_in){
      
         <div class="music-player-bar">
         <div class="player-info">
-            <img src="assets/images/default-cover.jpg" alt="Track Cover" id="track-cover">
+            <img src="assets/images/p.png" alt="Track Cover" id="track-cover">
             <div class="track-details">
                 <p class="track-title" id="track-title">Track Name</p>
                 <p class="track-artist" id="track-artist">Artist Name</p>

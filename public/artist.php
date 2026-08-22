@@ -22,7 +22,7 @@ if(mysqli_num_rows($subscriptionResult) === 0){
     exit;
 }
 
-$artist_id=$_GET['id'];
+$artist_id = $_GET['artist_id'] ?? 0;
 
 //Fetch artits details
 
@@ -375,7 +375,7 @@ $songsResult=mysqli_query($conn,$songsQuery);
 
     <div class="artist-details">
         <div class="artist-image">
-        <img src="<?php echo '../assets/images/artist_profiles/'.($artist['profile_picture']??'default_user.png'); ?>" alt="<?= htmlspecialchars($artist['name']) ?>">
+        <img src="<?php echo '../admin/assets/images/artist_profiles/'.($artist['profile_picture']??'default_user.png'); ?>" alt="<?= htmlspecialchars($artist['name']) ?>">
     </div>
 
     <div class="artist-info">
@@ -392,14 +392,14 @@ $songsResult=mysqli_query($conn,$songsQuery);
     <h3>Song by <?= htmlspecialchars($artist['name']) ?></h3>
     <?php while($song=mysqli_fetch_assoc($songsResult)) { ?>
     
-        <div class="song-card" onclick="playTrack('<?= htmlspecialchars($song['file_path']) ?>', '<?= htmlspecialchars($song['title']) ?>', '<?= htmlspecialchars($song['cover_image']) ?>')">
-        <img src="<?= htmlspecialchars($song['cover_image']) ?>" alt="Cover" class="song-cover">
+        <div class="song-card" onclick="playTrack('<?= htmlspecialchars($song['file_path']) ?>', '<?= htmlspecialchars($song['title']) ?>', '../admin/assets/images/album_covers/<?= htmlspecialchars($song['cover_image']) ?>')">
+        <img src="../admin/assets/images/album_covers/<?= htmlspecialchars($song['cover_image']) ?>" alt="Cover" class="song-cover">
         <div class="song-info">
           <h4><?= htmlspecialchars($song['title']) ?></h4>
             <p><?= htmlspecialchars($song['genre'] ?? 'N/A') ?></p>
         </div>
         <div class="song-actions">
-            <button class="play-button" onclick="playTrack('<?= htmlspecialchars($song['file_path']) ?>', '<?= htmlspecialchars($song['title']) ?>', '<?= htmlspecialchars($song['cover_image']) ?>')">
+            <button class="play-button" onclick="playTrack('<?= htmlspecialchars($song['file_path']) ?>', '<?= htmlspecialchars($song['title']) ?>', '../admin/assets/images/album_covers/<?= htmlspecialchars($song['cover_image']) ?>')">
             <i>▶</i>
         </button>
         </div>
@@ -412,7 +412,7 @@ $songsResult=mysqli_query($conn,$songsQuery);
 
     <div class="music-player-bar">
         <div class="player-info">
-            <img src="assets/images/default-cover.jpg" alt="Track Cover" id="track-cover">
+            <img src="assets/images/p.png" alt="Track Cover" id="track-cover">
             <div class="track-details">
                 <p class="track-title" id="track-title">Track Name</p>
                 <p class="track-artist" id="track-artist">Artist Name</p>

@@ -66,7 +66,7 @@ $songs=mysqli_fetch_all($songs_result,MYSQLI_ASSOC);
     </a>
     </div><br>
     <div class="album-header">
-        <img src="../assets/images/album_covers/<?php echo htmlspecialchars($album['cover_image']); ?>"
+        <img src="../admin/assets/images/album_covers/<?php echo htmlspecialchars($album['cover_image']); ?>"
         alt="<?php echo htmlspecialchars($album['title']); ?>">
 
         <div>
@@ -88,7 +88,7 @@ $songs=mysqli_fetch_all($songs_result,MYSQLI_ASSOC);
                 <li data-song-id="<?php echo htmlspecialchars($song['song_id']); ?>"
                 onclick="playTrack('<?php echo htmlspecialchars($song['file_path']); ?>',
                 '<?php echo htmlspecialchars($song['title']); ?>',
-                '..assets/images/album_covers/<?php echo htmlspecialchars($album['cover_image']); ?>',
+                '../admin/assets/images/album_covers/<?php echo htmlspecialchars($album['cover_image']); ?>',
                 '<?php echo htmlspecialchars($album['artist_name']); ?>')">
                 <span><?php echo htmlspecialchars($song['song_id']).".".htmlspecialchars($song['title']); ?></span>
                 <button  class="btn"> ▶ </button>
@@ -101,7 +101,7 @@ $songs=mysqli_fetch_all($songs_result,MYSQLI_ASSOC);
     
         <div class="music-player-bar">
         <div class="player-info">
-        <img src="../assets/images/album_covers/<?php echo htmlspecialchars($album['cover_image']);  ?>">
+        <img src="../admin/assets/images/album_covers/<?php echo htmlspecialchars($album['cover_image']);  ?>">
             <div class="track-details">
                 <p class="track-title" id="track-title">Track Name</p>
                 <p class="track-artist" id="track-artist">Artist Name</p>
