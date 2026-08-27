@@ -97,12 +97,12 @@ $is_logged_in=isset($_SESSION['user_id']) ;
 $user_id=$is_logged_in ? $_SESSION['user_id'] : null;
 
 
-$is_subsribed=false;
-if($is_logged_in){
-    $subscription_query="SELECT * from subscriptions where user_id =$user_id limit 1";
-    $subscription_result=mysqli_query($conn,$subscription_query);
-    $is_subsribed=mysqli_num_rows($subscription_result)>0;
-}
+// $is_subsribed=false;
+// if($is_logged_in){
+//     $subscription_query="SELECT * from subscriptions where user_id =$user_id limit 1";
+//     $subscription_result=mysqli_query($conn,$subscription_query);
+//     $is_subsribed=mysqli_num_rows($subscription_result)>0;
+// }
 
 
 ?>
@@ -148,7 +148,7 @@ if($is_logged_in){
 
 
 <!--start subscriptin-->
-            <div class="actions">
+            <!-- <div class="actions">
                 <button class="pro" id="pro" onclick="pro()">Join SoundPlus Pro</button>
                 <script>
                     function pro()
@@ -167,7 +167,7 @@ if($is_logged_in){
                         }
                     }
                 </script>
-            </div>
+            </div> -->
 <!--end subscriptin-->
 
 <!--playlist-->
@@ -462,13 +462,13 @@ if($is_logged_in){
              <?php
             include('includes/db_connect.php');
             $is_logged_in=isset($_SESSION['user_id']);
-            $is_subsribed=false;
-            if($is_logged_in){
-                $user_id=$_SESSION['user_id'];
-                $subscriptionQuery="SELECT * FROM subscriptions WHERE user_id=$user_id AND end_date >= CURDATE()";
-                $subscriptionResult=mysqli_query($conn,$subscriptionQuery);
-                $is_subsribed=mysqli_num_rows($subscriptionResult) > 0;
-            }
+            // $is_subsribed=false;
+            // if($is_logged_in){
+            //     $user_id=$_SESSION['user_id'];
+            //     $subscriptionQuery="SELECT * FROM subscriptions WHERE user_id=$user_id AND end_date >= CURDATE()";
+            //     $subscriptionResult=mysqli_query($conn,$subscriptionQuery);
+            //     $is_subsribed=mysqli_num_rows($subscriptionResult) > 0;
+            // }
             //Fetch Artists
             $artistQuery="SELECT artist_id,name,profile_picture FROM artists";
             $artistResult=mysqli_query($conn,$artistQuery);
@@ -503,18 +503,11 @@ if($is_logged_in){
               <script>
                 function checkLoginAndSubscriptionArtist(artistId){
                     const isLoggedIn=<?= json_encode($is_logged_in) ?>;
-                    const isSubscribed = <?= json_encode($is_subsribed) ?>;
 
                     if(!isLoggedIn){
-                      alert("Please log in to view artists.");
-                      window.location.href="login.html";
-                      return;
-                    }
-
-                    if(!isSubscribed){
-                        alert("You nedd a subscription to view artist details.");
-                        window.location.href="suscription.html";
-                         return;
+                        alert("Please log in to view artists.");
+                        window.location.href="login.html";
+                        return;
                     }
 
                     window.location.href=`artist.php?artist_id=${artistId}`;
@@ -530,16 +523,16 @@ if($is_logged_in){
      include('includes/db_connect.php');
 
      $is_logged_in=isset($_SESSION['user_id']);
-     $is_subsribed=true;
+    //  $is_subsribed=false;
 
-     if($is_logged_in){
-         $user_id=$_SESSION['user_id'];
+    //  if($is_logged_in){
+    //      $user_id=$_SESSION['user_id'];
 
-         $subscriptionQuery="SELECT * FROM subscriptions WHERE user_id=$user_id AND end_date >= CURDATE()";
+    //      $subscriptionQuery="SELECT * FROM subscriptions WHERE user_id=$user_id AND end_date >= CURDATE()";
 
-         $subscriptionResult=mysqli_query($conn,$subscriptionQuery);
-         $is_subsribed=mysqli_num_rows($subscriptionResult) > 0;
-     }
+    //      $subscriptionResult=mysqli_query($conn,$subscriptionQuery);
+    //      $is_subsribed=mysqli_num_rows($subscriptionResult) > 0;
+    //  }
    
     $query="SELECT cover_image,title,album_id,release_date FROM albums";
     $result=mysqli_query($conn,$query);
@@ -573,7 +566,8 @@ if($is_logged_in){
               function checkLoginAndSubscriptionAlbum(albumId)
               {
                     const isLoggedIn=<?= json_encode($is_logged_in) ?>;
-                    const isSubscribed = <?= json_encode($is_subsribed) ?>;
+                    // const isSubscribed = <?php //echo json_encode($is_subsribed) 
+                    ?>;
                     
                     if(!isLoggedIn){
                       alert("Please log in to view album.");
@@ -581,11 +575,11 @@ if($is_logged_in){
                       return;
                     }
 
-                    if(!isSubscribed){
-                        alert("You nedd a subscription to view Album ");
-                        window.location.href="suscription.html";
-                         return;
-                    }
+                    // if(!isSubscribed){
+                    //     alert("You nedd a subscription to view Album ");
+                    //     window.location.href="suscription.html";
+                    //      return;
+                    // }
 
                     window.location.href=`album.php?album_id=${albumId}`;
               }
@@ -639,7 +633,7 @@ if($is_logged_in){
     let audio = new Audio();
 
     let isLoggedIn=<?php echo json_encode($is_logged_in); ?>;
-    let isSubscribed=<?php echo json_encode($is_subsribed); ?>;
+    // let isSubscribed=<?php //echo json_encode($is_subsribed); ?>;
     
     //check login and play song
     function checkLoginAndSubscription(filepath,title,cover,artist){
@@ -649,11 +643,7 @@ if($is_logged_in){
                         return;
                         
                         }
-                        if(!isSubscribed){
-                           alert("You need a subscription to play songs.");
-                           window.location.href="subscription.php?redirect="+encodeURIComponent(window.location.href);
-                        return;
-                         }
+                        
                         playTrack(filepath,title,cover,artist);
                         }
 
