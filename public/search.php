@@ -15,7 +15,7 @@ if(mysqli_num_rows($result)>0)
   
     while($row=$result->fetch_assoc()){
       echo "<div class='search'>";
-        echo "<li> <img src='" .$row['cover_image'] ."' alt='Cover' class='song-cover1' ></li>";
+        echo "<li> <img src='../admin/assets/images/album_covers/" .$row['cover_image'] ."' alt='Cover' class='song-cover1' ></li>";
         echo"<li class='a1'><a href='home.php?id=".$row['song_id']."'>".$row['title']. "</a></li>";
         
         echo "</div>";

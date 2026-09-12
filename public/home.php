@@ -10,34 +10,34 @@ $category=isset($_GET['category']) ? $_GET['category'] : 'all';
 //Modify Sql query based on category
 if(isset($_GET['id'])){
     $id=$_GET['id'];
-    $sql="SELECT * FROM songs where song_id=$id";
+    $sql="SELECT songs.*, artists.name AS artist_name FROM songs JOIN artists ON songs.artist_id = artists.artist_id WHERE songs.song_id=$id";
 }
 elseif($category == 'all')
 {
-    $sql="SELECT * FROM songs";
+    $sql="SELECT songs.*, artists.name AS artist_name FROM songs JOIN artists ON songs.artist_id = artists.artist_id";
 }
 elseif($category == 'old')
 {
-    $sql="SELECT * FROM  songs WHERE song_id BETWEEN 1 AND 10";
+    $sql="SELECT songs.*, artists.name AS artist_name FROM songs JOIN artists ON songs.artist_id = artists.artist_id WHERE song_id BETWEEN 1 AND 10";
 }
 elseif($category == 'radio')
 {
-    $sql="SELECT * FROM  songs WHERE song_id BETWEEN 1 AND 16";
+    $sql="SELECT songs.*, artists.name AS artist_name FROM songs JOIN artists ON songs.artist_id = artists.artist_id WHERE song_id BETWEEN 1 AND 16";
 }
 elseif($category == 'top_artist')
 {
-    $sql="SELECT * FROM  songs WHERE song_id BETWEEN 1 AND 20";
+    $sql="SELECT songs.*, artists.name AS artist_name FROM songs JOIN artists ON songs.artist_id = artists.artist_id WHERE song_id BETWEEN 1 AND 20";
 }
 elseif($category == 'trending')
 {
-    $sql="SELECT * FROM  songs WHERE song_id ORDER BY song_id DESC LIMIT 10";
+    $sql="SELECT songs.*, artists.name AS artist_name FROM songs JOIN artists ON songs.artist_id = artists.artist_id WHERE song_id ORDER BY song_id DESC LIMIT 10";
 }
 elseif($category == 'new')
 {
-    $sql="SELECT * FROM  songs WHERE song_id ORDER BY song_id ASC LIMIT 9";
+    $sql="SELECT songs.*, artists.name AS artist_name FROM songs JOIN artists ON songs.artist_id = artists.artist_id WHERE song_id ORDER BY song_id ASC LIMIT 9";
 }
 else{
-    $sql="SELECT * FROM  songs"; //Default fetch all songs
+    $sql="SELECT songs.*, artists.name AS artist_name FROM songs JOIN artists ON songs.artist_id = artists.artist_id"; //Default fetch all songs
 }
 
 $result=$conn->query($sql);
@@ -51,10 +51,9 @@ if(isset($_GET['ajax']))
     while($row=mysqli_fetch_assoc($result))
     {
         $songs_html .='  <div id="songs-container" class="music-library">
-        <?php while($row=mysqli_fetch_assoc($result)) { ?>
-
-            <div class="song-card" onclick="checkLoginAndSubscription(\''.$row['file_path'].'\', \''. $row['title'].'\',\' '.$row['cover_image'] .'\', \''.$row['artist_id'] .'\')">
-           <img src="'.$row['cover_image'] .'" alt="Cover" class="song-cover">
+        '. $row["cover_image"].'
+        <div class="song-card" onclick="checkLoginAndSubscription(\''.$row['file_path'].'\', \''. $row['title'].'\',\' ../admin/assets/images/album_covers/'.$row['cover_image'] .'\', \''.$row['artist_name'] .'\')">
+           <img src="../admin/assets/images/album_covers/'.$row['cover_image'].'" alt="Cover" class="song-cover">
 
            <div class="play-button"><i>&#9658</i></div>
            <div class="song-info">
@@ -250,15 +249,15 @@ $user_id=$is_logged_in ? $_SESSION['user_id'] : null;
 
         <nav class="nav">
             <ul>
-                <li><a href="#" onclick="fetchSongs('all')">All</a></li>
-                <li><a href="#" onclick="fetchSongs('trending')">Trending</a></li>
-                <li><a href="#" onclick="fetchSongs('new')">New Songs</a></li>
-                <li><a href="#" onclick="fetchSongs('old')">Old Songs</a></li>
-                <li><a href="#" onclick="fetchSongs('genres')">Genres</a></li>
-                <li><a href="#" onclick="fetchSongs('album')">Album</a></li>
-                <li><a href="#" onclick="fetchSongs('top_playlist')">Top PlayList</a></li>
-                <li><a href="#" onclick="fetchSongs('top_artist')">Top Artist</a></li>
-                <li><a href="#" onclick="fetchSongs('radio')">Radio</a></li>
+                <li><a href="http://localhost/soundplus/public/home.php" onclick="fetchSongs('all')">All</a></li>
+                <li><a href="http://localhost/soundplus/public/artist.php?artist_id=12" onclick="fetchSongs('top_artist')">Top Artist</a></li>
+                <li><a href="http://localhost/soundplus/public/album.php?album_id=4" onclick="fetchSongs('top_playlist')">Top PlayList</a></li>
+                <li><a href="http://localhost/soundplus/public/album.php?album_id=15" onclick="fetchSongs('trending')">Trending</a></li>
+                <li><a href="http://localhost/soundplus/public/home.php" onclick="fetchSongs('new')">New Songs</a></li>
+                <li><a href="http://localhost/soundplus/public/album.php?album_id=6" onclick="fetchSongs('old')">Old Songs</a></li>
+                <li><a href="http://localhost/soundplus/public/home.php" onclick="fetchSongs('genres')">Genres</a></li>
+                <li><a href="http://localhost/soundplus/public/home.php" onclick="fetchSongs('album')">Album</a></li>
+                <li><a href="http://localhost/soundplus/public/home.php" onclick="fetchSongs('radio')">Radio</a></li>
             </ul>
         </nav>
 
@@ -428,10 +427,13 @@ $user_id=$is_logged_in ? $_SESSION['user_id'] : null;
 
     <h2 id="category-title" style="margin-left:20px"><?php echo ucfirst($category);?>  Songs</h2>
     <div id="songs-container" class="music-library">
-                <?php while($row=mysqli_fetch_assoc($result)) { ?>
+                <?php while($row=mysqli_fetch_assoc($result)) { 
+                $path="../admin/assets/images/album_covers/".$row['cover_image'];    
+                ?>
 
-                    <div class="song-card" onclick="checkLoginAndSubscription('<?= $row['file_path'] ?>', '<?= $row['title'] ?>', ' <?=$row['cover_image'] ?>', '<?=$row['artist_id'] ?>')">
-                   <img src="../admin/assets/images/album_covers/<?= $row['cover_image'] ?>" alt="Cover" class="song-cover">
+                    <div class="song-card" onclick="checkLoginAndSubscription('<?= $row['file_path'] ?>', '<?= $row['title'] ?>', '<?= $path ?>', '<?= $row['artist_name'] ?>')">
+                   
+                    <img src="<?= $path ?>" alt="Cover" class="song-cover">
 
                    <div class="play-button"><i>&#9658</i></div>
                    <div class="song-info">
@@ -683,9 +685,10 @@ $user_id=$is_logged_in ? $_SESSION['user_id'] : null;
         }
     }
 
-    function playTrack(filePath, title, cover) {
+    function playTrack(filePath, title, cover, artist) {
         audio.src = filePath;
         document.getElementById('track-title').textContent = title;
+        document.getElementById('track-artist').textContent = artist;
        
         document.getElementById('track-cover').src = cover;
         audio.play();

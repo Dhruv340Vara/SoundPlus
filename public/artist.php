@@ -14,13 +14,13 @@ if(!isset($_SESSION['user_id'])){
 
 
 $user_id=$_SESSION['user_id'];
-$subscriptionQuery="SELECT * FROM subscriptions WHERE user_id=$user_id AND end_date >= CURDATE()";
-$subscriptionResult=mysqli_query($conn,$subscriptionQuery);
+// $subscriptionQuery="SELECT * FROM subscriptions WHERE user_id=$user_id AND end_date >= CURDATE()";
+// $subscriptionResult=mysqli_query($conn,$subscriptionQuery);
 
-if(mysqli_num_rows($subscriptionResult) === 0){
-    header("Location: subscription.php");
-    exit;
-}
+// if(mysqli_num_rows($subscriptionResult) === 0){
+//     header("Location: subscription.php");
+//     exit;
+// }
 
 $artist_id = $_GET['artist_id'] ?? 0;
 
@@ -392,14 +392,14 @@ $songsResult=mysqli_query($conn,$songsQuery);
     <h3>Song by <?= htmlspecialchars($artist['name']) ?></h3>
     <?php while($song=mysqli_fetch_assoc($songsResult)) { ?>
     
-        <div class="song-card" onclick="playTrack('<?= htmlspecialchars($song['file_path']) ?>', '<?= htmlspecialchars($song['title']) ?>', '../admin/assets/images/album_covers/<?= htmlspecialchars($song['cover_image']) ?>')">
+        <div class="song-card" onclick="playTrack('<?= htmlspecialchars($song['file_path']) ?>', '<?= htmlspecialchars($song['title']) ?>', '../admin/assets/images/album_covers/<?= htmlspecialchars($song['cover_image']) ?>', '<?= htmlspecialchars($artist['name']) ?>')">
         <img src="../admin/assets/images/album_covers/<?= htmlspecialchars($song['cover_image']) ?>" alt="Cover" class="song-cover">
         <div class="song-info">
           <h4><?= htmlspecialchars($song['title']) ?></h4>
             <p><?= htmlspecialchars($song['genre'] ?? 'N/A') ?></p>
         </div>
         <div class="song-actions">
-            <button class="play-button" onclick="playTrack('<?= htmlspecialchars($song['file_path']) ?>', '<?= htmlspecialchars($song['title']) ?>', '../admin/assets/images/album_covers/<?= htmlspecialchars($song['cover_image']) ?>')">
+            <button class="play-button" onclick="playTrack('<?= htmlspecialchars($song['file_path']) ?>', '<?= htmlspecialchars($song['title']) ?>', '../admin/assets/images/album_covers/<?= htmlspecialchars($song['cover_image']) ?>', '<?= htmlspecialchars($artist['name']) ?>')">
             <i>▶</i>
         </button>
         </div>
@@ -481,9 +481,10 @@ $songsResult=mysqli_query($conn,$songsQuery);
         }
     }
 
-    function playTrack(filePath, title, cover) {
+    function playTrack(filePath, title, cover, artist) {
         audio.src = filePath;
         document.getElementById('track-title').textContent = title;
+        document.getElementById('track-artist').textContent = artist;
        
         document.getElementById('track-cover').src = cover;
         audio.play();

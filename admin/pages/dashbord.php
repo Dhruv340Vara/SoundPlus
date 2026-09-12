@@ -14,16 +14,16 @@
 
 include('../includes/admin_header.php');
 include('../includes/admin_db_connect.php');
-
 //Fetch metrics data
 
 $total_users=$conn->query("SELECT COUNT(*) as count FROM users")->fetch_assoc()['count'];
- $total_songs=$conn->query("SELECT COUNT(*) as count FROM songs")->fetch_assoc()['count'];
+$total_songs=$conn->query("SELECT COUNT(*) as count FROM songs")->fetch_assoc()['count'];
+$total_artists=$conn->query("SELECT COUNT(*) as count FROM artists")->fetch_assoc()['count'];
 
- $total_artists=$conn->query("SELECT COUNT(*) as count FROM artists")->fetch_assoc()['count'];
- $total_Album=$conn->query("SELECT COUNT(*) as count FROM Albums")->fetch_assoc()['count'];
- $total_plan=$conn->query("SELECT COUNT(*) as count FROM plans")->fetch_assoc()['count'];
- $total_revenue=$conn->query("SELECT COUNT(*) as count FROM plans")->fetch_assoc()['count'];
+$total_Album=$conn->query("SELECT COUNT(*) as count FROM albums")->fetch_assoc()['count'];
+// echo "dhruv";
+$total_plan=$conn->query("SELECT COUNT(*) as count FROM plans")->fetch_assoc()['count'];
+$total_revenue=$conn->query("SELECT COUNT(*) as count FROM plans")->fetch_assoc()['count'];
 
 //Fetch Recent activites
 
@@ -66,14 +66,14 @@ $total_users=$conn->query("SELECT COUNT(*) as count FROM users")->fetch_assoc()[
             <h3>Total Album</h3>
             <p><?php echo $total_Album; ?></p>
           </div>
-          <div class="metric-card">
+          <!-- <div class="metric-card">
             <h3>Active Plans</h3>
             <p><?php echo $total_plan; ?></p>
-          </div>
-          <div class="metric-card">
+          </div> -->
+          <!-- <div class="metric-card">
             <h3>Monthly Revenue</h3>
             <p>&#8377;<?php echo number_format($total_revenue,2); ?></p>
-          </div>
+          </div> -->
        </div>
       </table>
        </div>

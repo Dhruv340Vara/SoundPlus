@@ -425,7 +425,7 @@ if(isset($_POST['delete_song'])){
             <?php foreach($songs as $song): ?>
                 <div class="song-card">
                 <!-- song cover -->
-                    <img src="<?= $song['cover_image'] ?>" alt="Song Cover" onclick="playTrack('<?= $song['file_path'] ?>','<?= $song['title'] ?>','<?= $song['cover_image'] ?>','<?= $song['artist_id'] ?>')">
+                    <img src="../admin/assets/images/album_covers/<?= htmlspecialchars($song['cover_image']) ?>" alt="Song Cover" onclick="playTrack('<?= $song['file_path'] ?>','<?= $song['title'] ?>','../admin/assets/images/album_covers/<?= htmlspecialchars($song['cover_image']) ?>','<?= $song['artist_id'] ?>')">
                     <!-- song Info -->
                     <div class="song-info">
                         <h3><?= htmlspecialchars($song['title']) ?></h3>
